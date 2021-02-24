@@ -277,8 +277,38 @@ _______________________________________________________
 Please add the 12 test cases in the space below
 
 
-test11 :: String
-...
+> test11 :: String
+> test11 = convert1 3
+> test12 :: String
+> test12 = convert1 (-3)
+> test13 :: String
+> test13 = convert1 333
+
+
+> test21 :: String
+> test21 = convert2 4
+> test22 :: String
+> test22 = convert2 (-78)
+> test23 :: String
+> test23 = convert2 123112
+
+
+> test31 :: String
+> test31 = convert3 444
+> test32 :: String
+> test32 = convert3 (-7428)
+> test33 :: String
+> test33 = convert3 123112
+
+> test41 :: String
+> test41 = convert6 9999999
+> test42 :: String
+> test42 = convert6 (-1)
+> test43 :: String
+> test43 = convert6 9
+
+
+
 
 and so on
 
