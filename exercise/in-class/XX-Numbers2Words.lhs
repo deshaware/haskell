@@ -1,6 +1,3 @@
-1. Please fill in your student number, lastname
-   and first name in the space below
-
 Student No:
 Last Name:
 First Name:
@@ -125,8 +122,15 @@ _______________________________________________________
 Please add the 12 test cases in the space below
 
 
-test11 :: String
-...
+> test11 :: String
+> test11 = convert1 3
 
-and so on
+> test12 :: String
+> test12 = convert1 (-2)
+
+% > test21 :: String
+% > test21 = convert2 [1]
+
+% > test22 :: String
+% > test22 = convert2 [1]
 
