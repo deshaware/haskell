@@ -1,0 +1,35 @@
+The next big Haskell project is about to start!
+If I break, you can:
+  1. Restart:           M-x haskell-process-restart
+  2. Configure logging: C-h v haskell-process-log (useful for debugging)
+  3. General config:    M-x customize-mode
+  4. Hide these tips:   C-h v haskell-process-show-debug-tips
+Changed directory: /mnt/d/Study/haskell/exercise/assignment/homework/
+λ> :l 14-Numbers2Words.lhs
+[1 of 1] Compiling Main             ( 14-Numbers2Words.lhs, interpreted )
+Ok, one module loaded.
+Collecting type info for 1 module(s) ... 
+λ> test11
+"three"
+λ> test12
+"*** Exception: Prelude.!!: negative index
+λ> test13
+"*** Exception: Prelude.!!: index too large
+λ> test21
+"forty-four"
+λ> test22
+"*** Exception: 14-Numbers2Words.lhs:(121,3)-(125,52): Non-exhaustive patterns in function combine2
+λ> test23
+"*** Exception: Prelude.!!: index too large
+λ> test31
+"four hundred and forty-four"
+λ> test32
+"*** Exception: Prelude.!!: negative index
+λ> test33
+"*** Exception: Prelude.!!: index too large
+λ> test61
+"nine hundred and ninety-nine thousand nine hundred and ninety-nine"
+λ> test62
+"*** Exception: Prelude.!!: negative index
+λ> test63
+"*** Exception: Prelude.!!: index too large

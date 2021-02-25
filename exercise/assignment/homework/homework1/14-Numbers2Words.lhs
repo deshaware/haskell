@@ -30,7 +30,7 @@ space below
 
 Answer:
 The function convert1 takes an Int as its input argument and returns the string. 
-The function takes single digit and retuns a string representation of that number.
+The function converts single digit into a string representation of the number passed as argument.
 It uses the operator list indexing(!!) which takes two arguments, and returns the value at index which is
 given by second index. It is zero index based.
 for example 
@@ -61,7 +61,7 @@ Please add your specification as comment in the
 space below
 Answer:
 The function below convert2 takes an argument as integer and returns a string. 
-The function takes double digit integer and retuns a string representation of it
+It can take double digit integer and retuns a string representation of it
 It's functionality is to take 2 digit integer number and return it in words 
 
 This function uses 2 more functions 'digits2' and 'combine2' which does the job of returning the final result:
@@ -279,36 +279,67 @@ Please add the 12 test cases in the space below
 
 > test11 :: String
 > test11 = convert1 3
+
+expected result => "three"
+
 > test12 :: String
 > test12 = convert1 (-3)
+
+expected result => "*** Exception: Prelude.!!: negative index
+
 > test13 :: String
 > test13 = convert1 333
 
+expected result => "*** Exception: Prelude.!!: index too large
+
 
 > test21 :: String
-> test21 = convert2 4
+> test21 = convert2 44
+
+expected result => "forty-four"
+
 > test22 :: String
 > test22 = convert2 (-78)
+
+expected result => "*** Exception: 14-Numbers2Words.lhs:(121,3)-(125,52): Non-exhaustive patterns in function combine2"
+
 > test23 :: String
 > test23 = convert2 123112
+
+expected result => "*** Exception: Prelude.!!: index too large"
 
 
 > test31 :: String
 > test31 = convert3 444
+
+expected result => "four hundred and forty-four"
+
 > test32 :: String
 > test32 = convert3 (-7428)
+
+expected result => "*** Exception: Prelude.!!: negative index"
+
 > test33 :: String
 > test33 = convert3 123112
 
-> test41 :: String
-> test41 = convert6 9999999
-> test42 :: String
-> test42 = convert6 (-1)
-> test43 :: String
-> test43 = convert6 9
+expected result => "*** Exception: Prelude.!!: index too large"
 
 
 
+> test61 :: String
+> test61 = convert6 999999
 
-and so on
+expected result => "nine hundred and ninety-nine thousand nine hundred and ninety-nine"
+
+> test62 :: String
+> test62 = convert6 (-1)
+
+expected result => "*** Exception: Prelude.!!: negative index"
+
+> test63 :: String
+> test63 = convert6 12431423423
+
+expected result => "*** Exception: Prelude.!!: index too large"
+
+
 
