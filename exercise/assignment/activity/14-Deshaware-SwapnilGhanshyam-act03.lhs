@@ -24,16 +24,6 @@ Insertion Sort
 > isort []          = []
 > isort (x:xs)      = insert x (isort xs)
 
-Insertion Sort with internal method
-
-> isort1 :: (Ord a)      => [a] -> [a]
-> isort1 []              = []
-> isort1 (x:xs)          = insert1 x (isort1 xs)
->    where 
->       insert1 x []     = [x]
->       insert1 x (y:ys)  
->           | x <= y     = (x:y:ys)
->           | otherwise  = y:(insert x ys)
 
 
 Merge Sort
@@ -64,14 +54,9 @@ The function isort is an insertion sort method, which takes input as list of pol
 isort :: (Ord a)  => [a] -> [a]
 
 As we compare the value of elements of the list, we have to write class Ord a. The Ord class is used for totally ordered datatypes.The Ordering datatype allows a single comparison to determine the precise ordering of two objects.
-
-
 The way insertion sort works is like it takes the element one by one from the input list, and then it puts the element at a position where it will be in sorted order.
 
 isort (x:xs)   = insert x (isort xs)
-or
-isort1 (x:xs)  = insert1 x (isort1 xs)
-
 
 The insert method takes 2 argument, one is the element(x) and second is the list(xs). 
 
@@ -85,11 +70,14 @@ insert x (y:ys)
     | otherwise   = y: insert x ys
 
 
-the isort/isor1 has an condition mentioned below to stop the recursion when the list goes to empty
+the isort has an condition mentioned below to stop the recursion when the list goes to empty
 
  isort [] = []
 
 The only difference between isort and isort1 it uses internal function insert1 where it does not require to be declared explicitly
+Example
+*Main> isort  ["apple", "aapple","aaappple", "orange", "banana"]   
+["aaappple","aapple","apple","banana","orange"]
 
 
 (b)Merge Sort
@@ -129,44 +117,47 @@ Below commands demonstrates the merge process
       | x < y     = x : (merge xs (y:ys))
       | otherwise = y : (merge (x:xs) ys)
 
-3.
-(a)
-insert 3 [1, 1, 2, 3, 5, 9]
+Demonstration as below:
+*Main> msort [4,-5,6,-3,4,7,22,7,8,99]
+[-5,-3,4,4,6,7,7,8,22,99]
 
+
+3. 
 Let's illustrate the Feijen's notation
+(a)
 
 insert 3 [1, 1, 2, 3, 5, 9] = 
 = { applying insert }
- 1: insert 3 [1, 2, 3, 4, 5, 9]
+ 1: insert 3 [1, 2, 3, 5, 9]
 = { applying insert }
-[1, 1] : insert 3 [2, 3, 4, 5, 9]
+1 : 1 : insert 3 [2, 3, 5, 9]
 = { applying insert }
-[1, 1, 2]: insert 3 [3, 4, 5, 9]
+1 : 1 : 2 : insert 3 [3, 5, 9]
 = { applying insert }
-[1, 1, 2, 3]: { [3, 3, 4, 5, 9] }
-= { alist notaton }
-[1, 2, 3, 3, 4, 5, 9]
+1 : 1 : 2 : 3 : { [3, 3, 5, 9] }
+= { list notaton }
+[1, 2, 3, 3, 5, 9]
 
 (b)
 isort [53, 9, 2, 6, 19] = 
 = { applying isort }
 insert 53 isort [9, 2, 6, 19] 
 = { applying isort }
-insert 53 { insert 9 isort [2, 6, 19] } 
+insert 53 ( insert 9 isort [2, 6, 19] )
 = { applying isort }
-insert 53 { insert 9 { insert 2 isort [6, 19] } } 
+insert 53 ( insert 9 ( insert 2 isort [6, 19] ) )
 = { applying isort }
-insert 53 { insert 9 { insert 2 { insert 6 isort [19]} } } 
+insert 53 ( insert 9 ( insert 2 ( insert 6 isort [19]} ) )
 = { applying isort }
-insert 53 { insert 9 { insert 2 { insert 6 { insert 19 isort [] } } } } 
+insert 53 ( insert 9 ( insert 2 ( insert 6 ( insert 19 isort [] ) ) ) )
 = { applying isort }
-insert 53 { insert 9 { insert 2 { insert 6 { insert 19 [] } } } } 
+insert 53 ( insert 9 ( insert 2 ( insert 6 ( insert 19 [] ) ) ) )
 = { applying insert }
-insert 53 { insert 9 { insert 2 { insert 6 [19]  } } } 
+insert 53 ( insert 9 ( insert 2 ( insert 6 [19] ) ) )
 = { applying insert }
-insert 53 { insert 9 { insert 2 [6, 19] } } 
+insert 53 ( insert 9 ( insert 2 [6, 19] ) )
 = { applying insert }
-insert 53 { insert 9 [2, 6, 19]  } 
+insert 53 ( insert 9 [2, 6, 19]  )
 = { applying insert }
 insert 53 [2, 6, 9, 19] }
 = { applying insert }
