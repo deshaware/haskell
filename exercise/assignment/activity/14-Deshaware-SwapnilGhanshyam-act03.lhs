@@ -9,8 +9,7 @@ First Name: Swapnil Ghanshyam
 For each of the two methods, implement the function(s) that are used to build the sorting method.
 Answer:
 
-The two sorting methods that we discussed in the lectures are insertion sort and merge sort
-We used 2 different ways to implement those functions, with and without an internal function, which are illustrated with the followin commands
+The two sorting methods that we discussed in the lectures are insertion sort and merge sort:
 
 Insertion Sort
 
@@ -71,10 +70,9 @@ insert x (y:ys)
 
 
 the isort has an condition mentioned below to stop the recursion when the list goes to empty
-
  isort [] = []
 
-The only difference between isort and isort1 it uses internal function insert1 where it does not require to be declared explicitly
+
 Example
 *Main> isort  ["apple", "aapple","aaappple", "orange", "banana"]   
 ["aaappple","aapple","apple","banana","orange"]
@@ -96,28 +94,26 @@ msort xs         = merge ( msort left) (msort right)
            right = drop ((length xs) `div` 2) xs
 
 Below condition is to stop the execution of recursion infinitely
-
 msort []         = []
 msort [x]        = [x]
 
 Once the recursion stops itt returns then calls the merge method. Merge takes two list as input argument and return the sorted-merged version of both list combined into one
-
  merge :: (Ord a) => [a] -> [a] -> [a]
 
 It stops recursion when either of the lists goes empty.
-
  merge [] lst     = lst
  merge lst []     = lst
 
-The merge process is a recursive process, where it takes one element from both the lists ( x and y ) and compares them. If x is greater than y then it adds x to the list and call merge recursively for the remaining element of the first list(xs) and second list ( y:ys). Otherwise it adds y element since it's smaller than x and calls the merge recursively on remaining(ys) element with first list(x:xs)
-
-Below commands demonstrates the merge process
-
+The merge process is a recursive process, where it takes one element from both the lists ( x and y ) and compares them. If x is greater than y then it adds x to the list and call merge recursively for the remaining element of the first list(xs) and second list ( y:ys). Otherwise it adds y element since it's smaller than x and calls the merge recursively on remaining(ys) element with first list(x:xs). Below commands demonstrates the merge process
  merge (x:xs) (y:ys) 
       | x < y     = x : (merge xs (y:ys))
       | otherwise = y : (merge (x:xs) ys)
 
-Demonstration as below:
+Example for merge function
+*Main> merge [2,3,11] [9,12,15]
+[2,3,9,11,12,15]
+
+Demonstration for merge sort as below:
 *Main> msort [4,-5,6,-3,4,7,22,7,8,99]
 [-5,-3,4,4,6,7,7,8,22,99]
 
