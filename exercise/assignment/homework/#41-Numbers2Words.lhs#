@@ -1,0 +1,219 @@
+
+1 . Please fill in your student number, lastname
+   and first name in the space below
+
+Student No: 41
+Last Name:	VEERAPURA BHANUPRAKASH 
+First Name:	NAVYA KIRAN 
+
+_______________________________________________________
+
+Numbers into words
+8th March, 2012
+In Chapter 01
+_______________________________________________________
+
+
+> units, teens, tens :: [String]
+> units = ["zero","one","two","three","four","five",
+>          "six","seven","eight","nine"]
+> teens = ["ten","eleven","twelve","thirteen","fourteen",
+>          "fifteen","sixteen","seventeen","eighteen",
+>          "nineteen"]
+> tens  = ["twenty","thirty","forty","fifty","sixty",
+>          "seventy","eighty","ninety"]
+
+_______________________________________________________
+
+Function convert1
+Please add your specification as comment in the 
+space below
+
+SOLUTION: The function named "convert1" takes in an Integer as the input and returns an output in the form of a String. That is, it has an input of type Integer and a return type of String. This function uses the list indexing operation given by (!!). For example, if we have a list named "ys" and an index 'y', then "ys!!y" will return an element from list "ys" at the position 'y'. The list indexing operation used in convert1 returns the element from "units" at the given position 'n'. So, if the expression given is "units!!1", then the returned output will be "one
+". But the function will return "undefined" if an out-of-bound index is given. For example, if the expression given is "units!!11", an undefined will be returned since the list is indexed from zero to nine. 
+
+> convert1 :: Int -> String
+> convert1 n = units!!n
+
+_______________________________________________________
+
+
+Function convert2
+Please add your specification as comment in the 
+space below
+
+The function "convert2" takes in an input of type "Integer" and returns a "String". It makes use of two other functions named "digits2" and "combine2". The main goal of this function is to take, as input two digit numbers and return it in words. 
+
+digits2: The function "digits2", has an input of type "Integer" and returns a tuple containing two "Integer" type values. The "digits2" uses 'divMod', the '			 divMod' function returns a tuple containing the quotient and the remainder of the number n and the divisor. The divMod function can also be written as 		 follows: digits2 n= (div n 10, mod n 10). So for example, if the number n is 5, then the 'divMod 10' function will return a tuple containing (0, 5). 
+
+		 1. If the integer n=5, the value returned by digits2 is: 
+	     *Main> digits2 5
+		 (0,5)
+		 2. If n=95
+	     *Main> digits2 95
+		 (9,5) 
+
+The convert2 function is used for values less than 100. That is, it takes values in the range, 0<=n<100, which implies that n can have upto 2 digits. 
+
+combine2: The combine2 function takes, as input, a tuple containing "Integer" type and returns a type "string". The "combine2" function makes use of the syntax "  			 guarded equations". Considering a tuple (t,u), the function states that, when t is equal to zero, then return the value contained in the list "units" at 			position u. If t is equal to 1, then return the value contained in the list "teens" at position u, If t is greater than or equal to two and u has a 			  value of zero, then return the value contained in the list "tens" at the position (t-2). If t is greater than or equal to two and the value of u is not 		    equal to zero, then return the element from the list "tens" at position (t-2) appended (++) to the element from the list "units" at position u.
+
+		  1. If the tuple is (0,5), then 
+		  *Main> combine2 (0,5)
+	      "five"
+		  2. if the tuple is (1,5)
+		  *Main> combine2 (1,5)
+		  "fifteen"
+		  3. If the tuple is (9,5)
+		  *Main> combine2 (9,5)
+          "ninety-five"
+
+> convert2 :: Int -> String
+> convert2 = combine2 . digits2
+
+> digits2 :: Int -> (Int,Int)
+> digits2 n = n `divMod` 10
+
+> combine2 :: (Int,Int) -> String
+> combine2 (t,u)
+>    | t==0         = units!!u
+>    | t==1         = teens!!u
+>    | 2<=t && u==0 = tens!!(t-2)
+>    | 2<=t && u/=0 = tens!!(t-2) ++ "-" ++ units!!u
+
+
+_______________________________________________________
+
+Function convert3
+Please add your specification as comment 
+in the space below
+
+The function "convert3", takes as input, a value of type "Integer" and returns a type of "String". The function convert3 makes use of two other functions, 'combine3' and 'digits3'. 
+digits3: The function 'digits3' takes in a value of type 'Integer' and returns a tuple containing 'Integer values'. The digit3 function makes use of 'divMod'. The 			function 'divMod' can be written as (n div 100, n mod 100), where the first value is the quotient of the value n and the divisor 100 and the second value 		   is the remainder of n and the divisor 100. For example, if the number n = 65, then the tuple returned by divMod 100 is (65 div 100, 65 mod 100) = (0, 			 65). 
+
+		 1. When the input to digits3 is n=65
+		 *Main> digits3 65
+         (0,65)
+
+The function convert3 takes a number n less than 1000, which can be written as 0<=n<1000. Therefore, n can have upto three digits. 
+
+combine3: The 'convert3' function also makes use of another function apart from the 'digits3' function known as the 'combine3' function. The 'combine3' function 		   takes in a tuple of type 'Integer' and returns a type 'String'. So, considering a tuple (h,n), if h is equal to zero, then return, the value obtained by 		  applying the convert2 function on the number 'n'. If n is equal to zero, then return, the value in the list "units" at position 'h' appended (++) with 		   the 'String'"hundred". Otherwise, return the element in the list "units" at the index 'h' appended (++) with "hundred" which is then appended with the 			  result obtained on performing the 'convert2' function on the number n. 
+
+		  1. When the input to combine3 is (0,58)
+          *Main> combine3 (0,58)
+		  "fifty-eight"
+		  2. When input is (5, 0)
+		  *Main> combine3 (5,0)
+		  "five hundred"
+		  3. When input is (6,23)
+		  *Main> combine3 (6,23)
+		  "six hundred and twenty-three"
+
+> convert3 :: Int -> String
+> convert3 = combine3 . digits3
+
+> digits3 :: Int -> (Int,Int)
+> digits3 n = n `divMod` 100
+
+> combine3 :: (Int,Int) -> String
+> combine3 (h,n)
+>    | h==0      = convert2 n
+>    | n==0      = units!!h ++ " hundred"
+>    | otherwise = units!!h ++ " hundred and " ++ convert2 n
+
+_______________________________________________________
+
+Function convert6
+Please add your specification as comment 
+in the space below
+
+The function convert6 takes in an input of type 'Integer' and returns a type 'String'. It makes use of two other function, 'combine6' and 'digits6'. It is used when the number n has less than 7 digits. The range of the input for which convert6 is used is given by 0<=n<1000000. 
+digits6: The 'digits6' function, takes in an input of type 'Integer' and returns a tuple containing two 'Integer' values. It makes use of the 'divMod' function as 			in the case of 'convert2' and 'convert3' but the divisor here is 1000. So, for example, if the number n = 995, divMod returns (0, 995). 
+
+		 1. When the input to digits6 is n=995.
+		 *Main> digits6 995
+		 (0,995)
+
+combine6: The 'combine6' function takes in an input in the form of a tuple containing 'Integer' values, and returns a 'String'. When 'combine6' is called on a 			  tuple (m,n), if the value of m is equal to zero then return the result obtained by performing the convert3 function on n. If the value of n is equal to 			0, then return the result obtained by calling the convert3 function on m appended (++) with the string, thousand. Otherwise, return the value obtained 			  on calling the convert3 function on m appended with the string "thousand", appended (++) to the result obtained on calling the function "link" on n 			  which is further appended to the result obtained on calling the convert3 function on the value n. 
+
+		  1.When the input to combine6 is (0, 56 )
+		  *Main> combine6 (0,56)
+		  "fifty-six"
+
+		  2. When the input to combine6 is (500,0)
+		  *Main> combine6 (500,0)
+		  "five hundred thousand"
+
+		  3. When the input to combine6 is (520,400)
+		  *Main> combine6(520,400)
+		  "five hundred and twenty thousand four hundred"
+
+The link function is an additional function which takes in an input of type 'Integer' and returns an output of type 'String'. This function states that if n is less than 100 then append the string "and" in the "otherwise" clause of the function "combine6" else append a space (" ").
+
+Further, 'convert' is a function that takes in an input of type "Integer" and returns a "string". "convert" is equivalent to the function "convert6".
+
+> convert6 :: Int -> String
+> convert6 = combine6 . digits6
+> digits6 :: Int -> (Int,Int)
+> digits6 n = n `divMod` 1000
+
+> combine6 :: (Int,Int) -> String
+> combine6 (m,n)
+>   | m==0      = convert3 n
+>   | n==0      = convert3 m ++ " thousand"
+>   | otherwise = convert3 m ++ " thousand" ++ link n ++
+>                 convert3 n
+
+> link :: Int -> String
+> link n = if n < 100 then " and " else " "
+
+> convert :: Int -> String
+> convert = convert6
+
+
+_______________________________________________________
+
+Please add the 12 test cases in the space below
+
+
+> test11 :: String
+> test11 = convert1 6
+
+> test12 :: String
+> test12 = convert1 232
+
+> test13 :: String 
+> test13 = convert1 (-6)
+
+> test21 :: String
+> test21 = convert2 44
+
+> test22 :: String
+> test22 = convert2 143
+
+> test23 :: String
+> test23 = convert2 (-56)
+
+> test31 :: String 
+> test31 = convert3 345
+
+> test32 :: String 
+> test32 = convert3 12345
+
+> test33 :: String 
+> test33 = convert3 (-623)
+
+> test61 :: String
+> test61 = convert6 876543
+
+> test62 :: String
+> test62 = convert6 1456789
+
+> test63 :: String
+> test63 = convert6 (-765214)
+
+
+
+...
+
+and so on
+
