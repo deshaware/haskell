@@ -13,7 +13,7 @@ isprime :: Int -> Bool
 isprime n = n > 1 && ( factors n == [1,n])
 
 primes :: [Int]
-primes = [p | p <- [1..], isprime p]
+primes = [p | p <- [2..], isprime p]
 
-firstPrime :: Int -> [Int]
-firstPrime n = take n primes
+firstkprimes :: Int -> [Int]
+firstkprimes n = take n primes
