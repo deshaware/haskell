@@ -180,13 +180,12 @@ Thus, if we encode with (-4), it will give us the decoded String
 
 b) Let us consider the following examples
 1] 
-*Main> test1 = encode (4) "swapnil ghanshyam deshaware"
+*Main>encode (4) "swapnil ghanshyam deshaware"
 Expected outcome -> "waetrmp klerwlceq hiwleaevi"
 
-This is the example showcase the working of encode function. Here we shift the given string with 4. 
+Purpose: This is the example showcase the positive working of encode function. Here we shift the given string with 4. 
 
-*Main> test1 = encode (4) "swapnil ghanshyam deshaware"
-*Main> test1
+*Main> encode (4) "swapnil ghanshyam deshaware"
 "waetrmp klerwlceq hiwleaevi"
 
 If we encode it with (-4) it will give us back the original string, which shows our example works
@@ -197,15 +196,14 @@ if we use crack function on this, then also this should work
 *Main> crack "waetrmp klerwlceq hiwleaevi"
 "swapnil ghanshyam deshaware"
 
+Reason: This example is used to showcase the positive outcome of the Caesar Cipher
+
 
 2] 
-*Main> test2 = encode (3) "THIS IS AWESOME"
+*Main> encode (3) "THIS IS AWESOME"
 Expected outcome -> "THIS IS AWESOME"
 
-*Main> test2
-"THIS IS AWESOME"
-
-The reason for this example is to showcase that the ceaser cipher does not work for uppercase characters. If we try to crack it, it would give out the same string.
+Reason: this example is to showcase that the ceaser cipher does not work for uppercase characters. If we try to crack it, it would give out the same string.
 
 *Main> crack "THIS IS AWESOME"                  
 "THIS IS AWESOME"
@@ -213,15 +211,14 @@ The reason for this example is to showcase that the ceaser cipher does not work 
 Strictly speaking, for all the capital letters, crack function works.
 
 3]
-*Main> test3 = encode 5 "apples"
-Expected outcome -> "fuuqjx"
-*Main> test3
+*Main> encode 5 "apples"
 "fuuqjx"
 *Main> crack "fuuqjx"
 Expected outcome -> "apple"
 Actual outcome -> "peeath"
 
-Here, for example string "apple" does not work. Meaning if we encode the string "apple" and if we try to decode the encoded value of this string, then it does not give back the original. That's the reason we took this example, to show that it does not work for some string.
+Here, for example string "apple" does not work. Meaning if we encode the string "apple" and if we try to decode the encoded value of this string, then it does not give back the original. 
+Reason: we took this example, to show that it does not work for some string. One of the reason that it is not working as expected is because the crack function calculates frequencies of characters in the list and based on the oberserved frequencies and expected frequencies, it fails to calculate the correct shift factor. And that's the reason why it fails
 
 4]
 *Main> test4 = encode 11 "abc@syr.com"
@@ -240,7 +237,7 @@ As you can see for the 4th example, we have included the special character '@' a
 "Syracuse University"
 
 We took this example to demonstrate that when we use the combination of capital and small letters and numbers/
-Since it fails to encode those characters, even if the rest of the characters are getting encoded, the outcome can be still predicted and hence its fair to say that cesar cipher is at disadvantage.
+Since it fails to encode those characters, even if the rest of the characters are getting encoded, the outcome can be still predicted and hence its fair to say that it's not secure.
 
 
 
