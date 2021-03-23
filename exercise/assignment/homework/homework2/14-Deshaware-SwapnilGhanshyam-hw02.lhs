@@ -218,7 +218,7 @@ Expected outcome -> "apple"
 Actual outcome -> "peeath"
 
 Here, for example string "apple" does not work. Meaning if we encode the string "apple" and if we try to decode the encoded value of this string, then it does not give back the original. 
-Reason: we took this example, to show that it does not work for some string. One of the reason that it is not working as expected is because the crack function calculates frequencies of characters in the list and based on the oberserved frequencies and expected frequencies, it fails to calculate the correct shift factor. And that's the reason why it fails
+Reason: we took this example, to show that it does not work for some string. The reason that it is not working as expected is because the crack function calculates frequencies of characters in the list and based on the oberserved frequencies and expected frequencies, it incorrectly calculates chi-square statistics and thus it fails to give the correct shift factor. And that's the reason why it fails
 
 4]
 *Main> test4 = encode 11 "abc@syr.com"

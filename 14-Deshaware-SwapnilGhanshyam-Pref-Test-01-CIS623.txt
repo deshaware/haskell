@@ -1,0 +1,33 @@
+Course:    	CIS623 (MS CS)
+Semester:	Spring 2021
+
+Last  Name:      Deshaware
+First Name:      Swapnil Ghanshyam
+Student number:  14
+
+
+----------------------------------------------------------------------
+
+
+Please state if you can take the final on
+
+Date:  Mar 24, 2021
+Time:  9:30 am - 10:50 am  Syracuse time
+
+by typing your complete name after your preference and delete the 
+other choice.
+
+YES.  Swapnil Ghanshyam Deshaware
+
+
+Rename this file as XX-Lastname-Firstname-Pref-Test-01-CIS623.txt by
+putting your last name, first name and student number (the one assigned
+to you by this class) at the space accordingly.
+
+For exampe, if my student number is 50, then the file name should be
+
+50-Lee-Andrew-Pref-Test-01-CIS623.txt
+
+and upload this txt file by  11:59 pm, Mar 19, 2021 (Syracuse time).
+
+Andrew Lee
