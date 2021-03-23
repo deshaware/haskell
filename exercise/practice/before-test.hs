@@ -1,3 +1,5 @@
+import Prelude hiding(reverse)
+
 remove3rd :: [Int] -> [Int]
 remove3rd [x] = [x]
 -- remove3rd [x:xs] = [x:xs]
@@ -52,4 +54,53 @@ altMap f g (x:xs) = f x : altMap g f xs
 
 combine :: Num a => (a -> a) -> (a -> a) -> (a -> a)
 combine f g x = 2 * f x + 3 * g x 
+
+
+move :: ([a],[a]) -> ([a],[a]) 
+move (xs, []) = (xs, [])
+move (xs, y:ys) = move (y:xs, ys)
+
+reverse :: [a] -> [a]
+reverse x = func (move ([], x))
+    where 
+        func :: ([a], [a]) -> [a]
+        func (x,y) = x
+
+-- Q.9 Difficult
+
+-- split :: [Int] -> [([Int], [Int])]
+-- split [x] = [([x], [])]
+
+-- Q.10
+-- didn't work
+-- bqfour :: [[Char]] -> [[Char]]
+-- bqfour x:xs 
+--     | fst x /= 'a' || x /= 'A' = x:(bqfour xs)
+--     | otherwise                 = []
+
+bqfour :: [String] -> [String]
+bqfour [] = []
+bqfour (x:xs) 
+    | head x /= 'A' && head x /= 'a' = x:bqfour xs
+    | otherwise     = bqfour xs
+
+ite :: (a -> a) -> a -> Int -> a 
+ite f x 0 = x
+ite f x n = f (ite f x (n - 1))
+
+
+
+recip2 :: Fractional a => a -> a
+recip2 n = 1/n
+
+
+
+
+
+
+
+
+
+
+
 
