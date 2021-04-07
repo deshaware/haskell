@@ -12,9 +12,9 @@ m `leq` x = fromInteger m <= x
 lt :: Float -> Integer -> Bool
 x `lt` n = x < fromInteger n
 
-floor2 :: Float -> Integer 
-floor2 = fst ( until unit (shrink x) (bound x))
-        where unit (m,n) = (m+1 == n)
+-- floor2 :: Float -> Integer 
+-- floor2 = fst ( until unit (shrink x) (bound x))
+--         where unit (m,n) = (m+1 == n)
 
 type Interval = (Integer, Integer)
 

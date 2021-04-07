@@ -94,13 +94,12 @@ recip2 :: Fractional a => a -> a
 recip2 n = 1/n
 
 
+-- Remove Dumps
+rmdups :: Eq a => [a] -> [a]
+rmdups [] = []
+rmdups (x:xs) = x : filter (/= x) (rmdups xs)
 
-
-
-
-
-
-
+split :: 
 
 
 
