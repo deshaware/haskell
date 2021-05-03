@@ -29,3 +29,26 @@ isAsc [_] = True
 isAsc (x:y:xs) 
     | y > x     = isAsc xs
     | otherwise = False
+
+
+-- Define length  using folder
+
+len :: [a] -> Int
+len = foldr (\x y -> y + 1) 0
+
+len2 :: [a] -> Int
+len2 = foldl (\y x -> y + 1) 0 
+
+minList :: [Int] -> Int
+minList = foldl1 (\x y -> if x < y then x else y)
+
+
+minList2 :: [Int] -> Int
+minList2 = foldr1 (\x y -> if x < y then x else y)
+
+rev :: [a] -> [a]
+rev = foldl (\x y -> y:x) []
+
+
+rev2 :: [a] -> [a]
+rev2 = foldl (flip (:)) []

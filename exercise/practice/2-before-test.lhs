@@ -283,5 +283,15 @@ new datatype
 > t = Node (Node (Leaf 1) 3 (Leaf 4)) 5 (Node (Leaf 6) 7 (Leaf 9))
 
 
+removes every element in the second string appeared in the first string with folder
+
+% > rmStr :: String -> String -> String
+% > rmStr a b= foldr (\x y -> [ z | z <- a, if z == x then y else x ]) [] [x | x <- b]
+
+
+
+> rmStr2 :: String -> String -> String
+> rmStr2 a b =  [x =/ y | x <- b, y <- a ]
+
 
 
