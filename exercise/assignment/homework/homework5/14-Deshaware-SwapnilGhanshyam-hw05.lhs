@@ -1,7 +1,6 @@
 
-
 Homework 5
-Student No: True4
+Student No: 14
 Last Name: Deshaware
 First Name: Swapnil Ghanshyam
 
@@ -22,7 +21,7 @@ By following the ideas given in the proof of the above equality (see section 3.1
 
 Solution(1a):
 
-The universal property of fold was designed to handle both finite and infinte lists, but for simplicity, let us consider finite lists. So it can be stated as the following equivalence between two definitions for a function g that processes lists: 
+The universal property of fold has its origins in recursion theory. It can be stated as the following equivalence between two definitions for a function g that processes lists. 
 
 g [] = v
 g (x:xs) = f x (g xs)
@@ -31,9 +30,7 @@ The two commands shown above can be written as
 
 g = fold f v   
 
-The origin on the fold is derived from recursion. 
-
-
+It states that for finite lists the function fold f v is not just a solution to its defining equations but indeed a unique solution. The universal property of fold was designed to handle both finite and infinte lists. 
 
 Solution(1b):
 
@@ -55,7 +52,7 @@ Hence by appealing to the universal property, we conclude that the equation to b
 ((3*). product) []      = 3
 ((3*). product) (x:xs)  = (*) x (((3*) . product) xs)
 
-Let us simplify the above equation, so we getChar 
+Let us simplify the above equation, so we get
 
 product [] * 3      = 3
 product (x:xs) * 3  = x * (product xs * 3 )
@@ -82,15 +79,6 @@ For second equation
 As we can see, we have proved both the equation as they hold property of function fold. We do not need to prove by induction because it has been encapsulated in the universal property of fold, and the fact that the given function is expressed in terms of fold iteself. Hence our derived prood holds true.
 
 
-% > test :: [Int] -> Int 
-% > test = foldr (+) 1
-
-% > test2 :: [Int] -> Int 
-% > test2 = foldl (*) 3
-
-% > test3 :: [Int] -> Int 
-% > test3 []  = 3
-% > test3 (x:xs) = x * (test3 xs)
 ----------------------------------------------------------------------------------------------------------
 
 2. (Total 30 point) Use the Universal property of fold as a definition principle
@@ -219,6 +207,102 @@ As with the universal property, the primary application of the fusion property i
 
 Solution(3b):
 
-Let us formulate the given equation,
+The given equation is
 
 (⊕ a) · fold (⊕) b = fold (⊕)(b ⊕ a)
+
+When two simple conditions are sufficient to ensure that composition of an arbitrary function and a fold can be used to give a single fold. This property is knowns as fusion property of fold. 
+
+Let us formulate the given equation 
+
+((⊕ a) · fold (⊕) b) [ ] = (b ⊕ a)
+((⊕ a) · fold (⊕) b) (x : xs) = (⊕) x (((⊕ a) · fold (⊕) b) xs)
+
+On simplifying the above equations
+
+(⊕ a) (fold ((⊕) b [ ]) = v
+(⊕ a) (fold ((⊕) b (x : xs)) = (⊕) x ((⊕ a) (fold ((⊕) b xs))
+
+Let us further simplifying further so we get the following
+
+=>      (⊕ a) (fold (⊕) b []) = (b ⊕ a)
+    = { Definition of fold }
+        (⊕ a) b = (b ⊕ a)
+
+and
+=>      (⊕ a) (fold (⊕) b (x:xs)) = (⊕) x ((⊕ a) (fold (⊕) b xs))
+    = { Definition of fold }
+        (⊕ a) (fold (⊕) b xs)) = (⊕) x ((⊕ a) (fold (⊕) b xs))
+    = { Generalising (fold (⊕) b xs) to a fresh variable y }
+        (⊕ a) ((⊕) x y) = (⊕) x ((⊕ a) y)
+
+Based on the fusion property this can be written using a single fold 
+
+(⊕a) · fold (⊕) b = fold (⊕) (b ⊕ a)
+
+
+
+Solution (3c):
+To Prove:
+double . sum = foldr ((+) . double) 0
+
+Proof:
+The fusion property of fold can be given as
+
+h (fold g w [ ]) = v
+h (fold g w (x : xs)) = f x (h (fold g w xs))
+
+First, we replace the function sum by it's definition using fold
+
+double. fold (+) = foldr ((+) . double) 0
+
+where 
+
+double      :: Int -> Int 
+double x    =  x + x 
+
+
+Let us start by replacing the definition of sum with it's fold property, as we know sum can be expressed in terms of fold as fold (+) 0. Thus,
+
+double .(fold (+) 0) = foldr ((+) . double) 0
+
+Now we apply universal property of fold, the equation now we need to prove becomes 
+
+double . (fold (+) 0) []    = 0
+double . (x:xs)             = ((+) . double) x (double. (fold (+) 0) xs)
+
+By using the law of composition
+double . (fold (+) 0) (x:xs) = (+) double x (double ((fold (+) 0) xs))
+double . (fold (+) 0) (x:xs) = double x + (double ((fold (+) 0) xs))
+
+Then we get the final simplified equation
+
+double . (fold (+) 0) []        = 0                                   
+double . (fold (+) 0) (x:xs)    = double x + (double ((fold (+) 0) xs))
+
+We can prove the simplified equation as follows
+For first equation,
+
+LHS =>  double . (fold (+) 0) []
+    = { using the law of composition }
+        double (fold (+) 0) [])
+    = { applying definition of sum(represented as fold (+) 0) }
+        double 0 
+    = { applying double }
+        0 + 0
+    = { applying + }
+        0
+    = RHS
+
+Let us prove the second equation
+
+LHS => double . (fold (+) 0) (x:xs)
+    = { using law of compostion }
+        double (fold (+) 0) (x:xs))
+    = { applying definition of sum(represented as fold (+) 0 (x:xs)) } 
+        double (x + (fold (+) 0) xs)
+    = { applying law of aritmetic (distributivity) }
+        double x + double ((fold (+) 0 ) xs)
+    = RHS
+
+Hence proved.
