@@ -1,5 +1,4 @@
-
-> import Prelude hiding ((^), init, (!!), (.))
+> import Prelude hiding ((^), init, (!!), (.), ($), )
 > import Data.Char
 
 > import Data.List hiding ( (!!) )
@@ -290,8 +289,14 @@ removes every element in the second string appeared in the first string with fol
 
 
 
-> rmStr2 :: String -> String -> String
-> rmStr2 a b =  [x =/ y | x <- b, y <- a ]
+% > rmStr2 :: String -> String -> String
+% > rmStr2 a b =  [x =/ y | x <- b, y <- a ]
 
+
+> ($) :: Int -> Int -> Int
+> x $ y = 0 `max` (x + y)
+
+> mss2    :: [Int] -> Int
+> mss2    = maximum . scanr ($) 0 
 
 

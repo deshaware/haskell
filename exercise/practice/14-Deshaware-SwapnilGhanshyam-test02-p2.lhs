@@ -198,8 +198,8 @@ Solution:
 There are two methods given to solve a sudoku puzzle solve1 and solve2
 
 The solve1 methods works without prune function, which means it creates more combinations(9^61) of rows to solve the sudoku puzzle and makes it practically difficult to solve it in real time.
-
-The solve2 functions has different approach. It makes use of prune function and thuse reduces the number of combinations of different rows by pruning the rows which removes the duplicates(the digits which are already there in other rows of that combination) and thus it makes it efficient to solve the puzzle in real time.
+The solve2 functions has different approach. 
+It makes use of prune function and thuse reduces the number of combinations of different rows by pruning the rows which removes the duplicates(the digits which are already there in other rows of that combination) and thus it makes it efficient to solve the puzzle in real time.
 
 Let us see how pruning is being performed in the function solve2. We seek a function prune which can be defined as follows
 
@@ -246,6 +246,7 @@ ghci> notElem '5' ['1', '2', '3', '4']
 True
 
 and example for function prune
+
 ghci> prune ( choices  example51 )
 [["1289","189","4","268","123","5","7","1236","129"],["1258","1578","1278","2678","1237","9","4","1236","125"],["3","6","1279","27","1247","147","125","12","8"],["7","2","1389","59","6","13","158","148","145"],["15689","13589","1389","4","13579","2","1568","1678","157"],["156","145","1","57","8","17","1256","9","3"],["4","13789","123789","2789","279","78","1238","5","6"],["1289","1789","5","3","2479","4678","128","12478","1247"],["28","378","6","1","2457","478","9","23478","247"]]
 
@@ -273,6 +274,16 @@ f : A → A
 the fixed-point iteration method is find a value s in A (referred as a fixed point) such that f(s) = s by
 applying the function f to a starting value a repeatedly
 
+ghci> many (*1) 4
+4
+ghci> many (/2) 4  
+0.0
+
+ghci> many (/2) 31431
+0.0
+
+as we can see, many is fixed-point function which keeps applying until the argument becomes fixed.
+
 The prune function gives the efficient combinations of rows.
 
 Thus, with the help of fixed-point function and pruning, solve2 function solves sudoku puzzle efficiently, thus solve2 solution referred as fixed-point computation with a pruning strategy.
@@ -293,13 +304,14 @@ ghci> solve2 example51
 [["184625739","572839461","369741528","728963145","953412687","641587293","417298356","295376814","836154972"]]
 
 Explanation:
+The function solve2 for argument example51 returns the output quickly, this is due to pruning. We get the output in reasonable amount of time
 
-The function solve2 for argument example51 returns the output quickly, this is due to pruning.
 
 as for the other example, examplealt
 
 ghci> solve2 examplealt
 
-This will go in infinte loop and will not provide any output. 
+This will go in infini te loop and will not provide any output. 
+
 Explanation:
-As we can see, there are many 0 in the given input
+As we can see, there are many 0 in the given input, it takes a lot of time to produce lots of combinations of rows, thus making it difficult to provide output in the reasonable period of time.
