@@ -30,7 +30,7 @@ Merge Sort
 > msort :: (Ord a) => [a] -> [a]
 > msort []         = []
 > msort [x]        = [x]
-> msort xs         = merge ( msort left) (msort right)
+> - xs         = merge ( msort left) (msort right)
 >       where
 >            left  = take ((length xs) `div` 2) xs
 >            right = drop ((length xs) `div` 2) xs

@@ -156,7 +156,7 @@ Replicate
 % > 0 !! [] = undefined
 
 > 0 !! (x:xs)= x
-> n !! (x:xs) | n <= len (x:xs) = ((n-1) !! xs) | otherwise = undefined
+> n !! (x:xs) | n <= len (x:xs) = (n-1) !! xs | otherwise = undefined
 
 > elem2 :: Eq a => a -> [a] -> Bool
 > elem2 n lst = length [ x | x <- lst, x == n] == 1
